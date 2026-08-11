@@ -3,12 +3,14 @@ After the OCLC Data Sync job is completed, you may see “Records not imported u
 
 
 **Background**
+
 This tool is created to extract OCLC numbers from the XML file downloaded from Alma.
 After the OCLC Data Sync import jobs are completed, you may see some **Records Not Imported** section, specifically **“Records not imported upon no match”** records. This means that our holdings are set in OCLC, but we don't have the records in Alma.
 In this case, I delete the holdings in OCLC.
 We can download the file in either **XML** or **Binary (MARC)** format. However, I noticed that the downloaded MARC file does not contain any content once you open the file. My workaround is to download the **XML file** and then use this tool to extract the OCLC numbers from the file.
 
 **Purpose**
+
 The OCLC Number Extractor reads a MARC XML file and creates an Excel workbook containing OCLC numbers found in the records.
 The workbook separates records into online and physical resource worksheets.
 
@@ -21,43 +23,28 @@ The workbook separates records into online and physical resource worksheets.
 5. Click Open. Wait for the completion message.
 6. Click OK.
 
-
 The tool saves the Excel workbook in the same folder as the selected XML file.
-
 For example, if the input file is: file_0.xml
-
 the output will be: file_0_oclc_numbers.xlsx
-
 If that workbook already exists, the tool creates a new version such as: file_0_oclc_numbers_2.xlsx
-
 Existing workbooks are not overwritten.
-
 
 **Excel workbook contents**
 
 The workbook contains three worksheets:
-
-**All records** — every record with a recognized OCLC number
-
-**Online **— records whose MARC 300 field contains the phrase “online resource”
-
-**Physical** — records whose MARC 300 field does not contain the phrase “online resource”
+**1. All records** — every record with a recognized OCLC number
+**2. Online**— records whose MARC 300 field contains the phrase “online resource”
+**3. Physical** — records whose MARC 300 field does not contain the phrase “online resource”
 
 Each worksheet contains these columns:
-
-**OCLC_Numbe**r — the numeric portion of the OCLC identifier
-
-**Full_035_Field** — the extracted identifier, such as (OCoLC)123456
-
-**Record_Number** — the record’s sequential position in the XML file
-
-**Resource_Type** — Online or Physical
-
+**1. OCLC_Number** — the numeric portion of the OCLC identifier
+**2. Full_035_Field** — the extracted identifier, such as (OCoLC)123456
+**3. Record_Number** — the record’s sequential position in the XML file
+**4. Resource_Type** — Online or Physical
 
 **Important interpretation note**
 For this tool, “Physical” means that the phrase “online resource” was not found in the record’s MARC 300 field.
 This is a processing category, not a complete bibliographic format determination. Review questionable records before using the category for deletion or other irreversible cleanup.
-
 
 **Troubleshooting**
 Wait approximately 10 seconds and try once more.
